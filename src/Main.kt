@@ -22,9 +22,19 @@ fun main() {
                     "En el semáforo se indicará el número de dígitos correctos: ")
             println("${ROJO}En rojo el número de dígitos correctos en la posición incorrecta ${RESET}")
             println("${VERDE}En verde el número de dígitos correctos en la posición correcta ${RESET}")
-            println("Tienes un total de 10 oportunidades. Adelante: \n")
+            println("Escoge la dificultad: ")
+            println(" 1. Fácil \n 2.Medio \n 3.Difícil \n")
+            var dificultad = readln().toInt()
 
-            var juego = Juego()
+
+            var juego = Juego(dificultad)
+            when{
+                dificultad == 1 -> println("Los dígitos pueden ser números del 1 al 4 sin repetirse")
+                dificultad == 2 -> println("Los dígitos pueden ser números del 1 al 5 sin repetirse")
+                dificultad == 3 -> println("Los dígitos pueden ser números del 1 al 6 sin repetirse")
+            }
+
+            println("Tienes un total de 10 oportunidades. Adelante: \n")
 
             for(i in 1..10){
                 juego.incrementarIntentos()

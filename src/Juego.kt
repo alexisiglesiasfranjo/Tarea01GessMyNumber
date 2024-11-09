@@ -1,19 +1,27 @@
+import com.sun.jdi.IntegerType
 import jdk.incubator.vector.VectorOperators.Test
 import java.util.function.Predicate
 
-class Juego : Predicate<Char>{
+class Juego(dificultad : Int) : Predicate<Char>{
 
-    var numeroRandom = crearNumero().toString()
+    var numeroRandom = crearNumero(dificultad).toString()
     var intentos = 0
     var ganado = false
 
-    fun crearNumero() : Int{
-        var numero = mutableListOf(1,2,3,4,5)
+    fun crearNumero(dificultad : Int) : Int{
+
+        var numero: MutableList<Int>
+        if (dificultad==1){
+           numero = mutableListOf(1,2,3,4)
+       }else if (dificultad==2){
+           numero = mutableListOf(1,2,3,4,5)
+       }else{
+           numero = mutableListOf(1,2,3,4,5,6)
+       }
+
         numero.shuffle()
         return numero.take(4).joinToString("").toInt()
     }
-
-
 
     fun incrementarIntentos(){
         this.intentos++
